@@ -1,19 +1,19 @@
 class ProductList {
   constructor($target, initialData) {
-    this.$target = $target;
-    this.state = initialData;
-    this.render();
+    this.$target = $target
+    this.state = initialData
+    this.render()
   }
 
   setState(newState) {
-    this.state = newState;
-    this.render();
+    this.state = newState
+    this.render()
   }
 
   render() {
-    console.log('렌더링!');
+    console.log('렌더링!')
     if (this.state.length === 0) {
-      this.$target.innerHTML = `<h1>상품이 없습니다.</h1>`;
+      this.$target.innerHTML = `<h1>상품이 없습니다.</h1>`
     } else {
       this.$target.innerHTML = this.state
         .map((item) => {
@@ -40,11 +40,11 @@ class ProductList {
                 'ko-KR'
               )}원`}</p>
             </article>
-      `;
+      `
         })
-        .join('');
+        .join('')
     }
   }
 }
 
-export default ProductList;
+export default ProductList
