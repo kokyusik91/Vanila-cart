@@ -8,12 +8,17 @@ const $closeCartButton = document.getElementById('close-cart-btn')
 const $shoppingCart = document.getElementById('shopping-cart')
 const $backdrop = document.getElementById('backdrop')
 const $cartList = document.getElementById('cart-list')
+const $paymentButton = document.getElementById('payment-btn')
+const cartListFromLocalStorage = localStorage.getItem('cart')
 
 let productData = []
 
 // 최초 렌더링을 한번한다.
 const productList = new ProductList($productListGrid, [])
-const cartList = new CartList($cartList, [])
+const cartList = new CartList(
+  $cartList,
+  cartListFromLocalStorage ? JSON.parse(cartListFromLocalStorage) : []
+)
 
 const toggleCart = () => {
   $shoppingCart.classList.toggle('translate-x-full')
@@ -72,6 +77,10 @@ const deleteCartItem = (e) => {
   }
 }
 
+const onSave = () => {
+  cartList.onSaveToLocalStorage()
+}
+
 main()
 
 $openCartButton.addEventListener('click', toggleCart)
@@ -79,3 +88,4 @@ $closeCartButton.addEventListener('click', toggleCart)
 $backdrop.addEventListener('click', toggleCart)
 $productListGrid.addEventListener('click', addCartItem)
 $cartList.addEventListener('click', deleteCartItem)
+$paymentButton.addEventListener('click', onSave)

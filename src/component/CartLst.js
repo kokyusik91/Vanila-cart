@@ -6,7 +6,6 @@ class CartList {
     this.$totalCount = document.getElementById('total-count')
     this.state = initialData
     this.$target.append(this.$container)
-    this.totalArray = []
     this.render()
   }
 
@@ -64,6 +63,10 @@ class CartList {
       }
     })
     this.setState(newState)
+  }
+
+  onSaveToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.state))
   }
 
   render() {
